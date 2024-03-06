@@ -18,7 +18,7 @@ public class GreetingController {
 	//  http://localhost:8080/api/v1/demo/greet
 	@RequestMapping(path = "/greet", method = RequestMethod.GET)
 	public String sayHello() {
-		return "Hello... Client....!";
+		return "Hello... world....!";
 	}
 	
 	//http://localhost:8080/api/v1/demo/goodevening
