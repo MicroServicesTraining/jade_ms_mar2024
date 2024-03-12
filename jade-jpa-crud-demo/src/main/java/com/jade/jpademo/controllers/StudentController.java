@@ -6,6 +6,7 @@ package com.jade.jpademo.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,5 +48,35 @@ public class StudentController {
 	public String modifyStudent(@RequestBody Student student) {
 		return studentService.modifyStudent(student);
 	}
+	
+	@GetMapping("/findstudent/rollno/{rollNo}")
+	public Student findStudent(@PathVariable Integer rollNo) {
+		return studentService.findStudent(rollNo);
+	}
+	
+	@GetMapping("/findstudentsbyname/name/{name}")
+	public List<Student> findStudentsByName(@PathVariable String name) {
+		return studentService.findStudentsByName(name);
+	}
+	
+	@GetMapping("/findstudentsbycourse/course/{course}")
+	public <T> ResponseEntity<T> findStudentsByCourse(@PathVariable String course){
+		return studentService.findStudentsByCourse(course);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
