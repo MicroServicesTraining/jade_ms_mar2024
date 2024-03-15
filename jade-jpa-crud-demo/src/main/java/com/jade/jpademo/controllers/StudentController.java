@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jade.jpademo.entities.Student;
+import com.jade.jpademo.responses.StudentServiceResponse;
 import com.jade.jpademo.services.StudentService;
 
 /**
@@ -64,7 +65,15 @@ public class StudentController {
 		return studentService.findStudentsByCourse(course);
 	}
 	
+	@GetMapping("/fetchStudentsNameStartsWith/nametoken/{nameToken}")
+	public <T> StudentServiceResponse<T> fetchStudentsNameStartsWith(@PathVariable(name = "nameToken") String namePart){
+		return studentService.fetchStudentsNameStartsWith(namePart);
+	}
 	
+	@PostMapping("/newstudentslist")
+	public <T> StudentServiceResponse<T> addNewStudentsList(@RequestBody List<Student> newStudentsList) {
+		return studentService.addNewStudentsList(newStudentsList);		
+	} 
 	
 	
 	

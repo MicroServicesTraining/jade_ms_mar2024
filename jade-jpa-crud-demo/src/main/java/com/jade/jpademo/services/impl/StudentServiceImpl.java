@@ -19,6 +19,7 @@ import com.google.protobuf.Option;
 import com.jade.jpademo.ErrorResponse;
 import com.jade.jpademo.entities.Student;
 import com.jade.jpademo.repositories.StudentRepository;
+import com.jade.jpademo.responses.StudentServiceResponse;
 import com.jade.jpademo.services.StudentService;
 
 /**
@@ -73,7 +74,7 @@ public class StudentServiceImpl implements StudentService {
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T> ResponseEntity<T> findStudentsByCourse(String course) {
-		List<Student> studentsList = null;
+		List<Student> studentsList;
 		Optional<List<Student>> studentsListResult = studentRepository.findByCourse(course);
 		if(studentsListResult.isPresent() && !CollectionUtils.isEmpty(studentsListResult.get())) {
 			studentsList = studentsListResult.get();
@@ -85,6 +86,34 @@ public class StudentServiceImpl implements StudentService {
 			errorResponse.setMessage("No Students enrolled for the given course");
 			//studentsList = new ArrayList<Student>();
 			return (ResponseEntity<T>) new ResponseEntity<ErrorResponse>(HttpStatus.OK).ok(errorResponse );
+		}
+	}
+	
+	@Override
+	public <T> StudentServiceResponse<T> fetchStudentsNameStartsWith(String namePart) {
+		List<Student> studentsList;
+		Optional<List<Student>> studentsListResult = studentRepository.fetchStudentsNameStartsWith(namePart);
+		if(studentsListResult.isPresent() && !CollectionUtils.isEmpty(studentsListResult.get())) {
+			studentsList = studentsListResult.get();
+			return (StudentServiceResponse<T>) new StudentServiceResponse<List<Student>>(studentsList, null);
+		} else {
+			ErrorResponse errorResponse = new ErrorResponse();
+			errorResponse.setCode("NO_DATA_FOUND");
+			errorResponse.setType("NON_AVAILBLE");
+			errorResponse.setMessage("No Students with the given part of name");
+			return (StudentServiceResponse<T>) new StudentServiceResponse<ErrorResponse>(errorResponse, "no students data available for this search");
+		}
+	}
+
+	@Override
+	public <T> StudentServiceResponse<T> addNewStudentsList(List<Student> newStudentsList) {
+		//validate input here
+		List<Student> savedStudentsList = studentRepository.saveAll(newStudentsList);
+		Integer savedStudentsCount = Optional.ofNullable(savedStudentsList).orElse(new ArrayList<Student>()).size();
+		if(savedStudentsCount > 0) {
+			return (StudentServiceResponse<T>) new StudentServiceResponse<String>(savedStudentsCount + " students added successfully", null);
+		} else {
+			return (StudentServiceResponse<T>) new StudentServiceResponse<String>(null, "There is some problem in saving students, please try again");
 		}
 	}
 
@@ -109,5 +138,7 @@ public class StudentServiceImpl implements StudentService {
 			return null;
 		}
 	}
+	
+	
 		
 }

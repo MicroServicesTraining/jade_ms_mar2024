@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 
 import com.jade.jpademo.entities.Student;
+import com.jade.jpademo.responses.StudentServiceResponse;
 
 /**
  * 
@@ -27,5 +28,9 @@ public interface StudentService {
 	List<Student> findStudentsByName(String name);
 
 	<T> ResponseEntity<T> findStudentsByCourse(String course);
+
+	<T> StudentServiceResponse<T> addNewStudentsList(List<Student> newStudentsList);
+
+	<T> StudentServiceResponse<T> fetchStudentsNameStartsWith(String namePart);
 
 }
