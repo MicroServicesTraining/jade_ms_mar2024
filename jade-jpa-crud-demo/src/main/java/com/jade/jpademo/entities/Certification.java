@@ -3,47 +3,47 @@
  */
 package com.jade.jpademo.entities;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 /**
  * 
  */
 @Entity
-@Table(name = "tbl_courses")
-public class Course {
+@Table(name = "certifications" )
+public class Certification {
 
 	@Id
-	@Column(name = "crs_id")
-	private Long courseId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "cert_id")
+	private Integer certId;
 	
-	@Column(name = "crs_name")
 	private String name;
-	
-	@Column(name = "crs_fee")
 	private Double fee;
 	
-	@OneToMany(mappedBy = "joinedCourse", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Student> students;
+	@ManyToMany(mappedBy = "certifications", fetch = FetchType.LAZY)
+	private Set<Student> students;
 	
 	/**
-	 * @return the courseId
+	 * @return the certId
 	 */
-	public Long getCourseId() {
-		return courseId;
+	public Integer getCertId() {
+		return certId;
 	}
 	/**
-	 * @param courseId the courseId to set
+	 * @param certId the certId to set
 	 */
-	public void setCourseId(Long courseId) {
-		this.courseId = courseId;
+	public void setCertId(Integer certId) {
+		this.certId = certId;
 	}
 	/**
 	 * @return the name
@@ -72,13 +72,15 @@ public class Course {
 	/**
 	 * @return the students
 	 */
-	public List<Student> getStudents() {
-		return students;
-	}
+	/*
+	 * public Set<Student> getStudents() { return students; }
+	 */
 	/**
 	 * @param students the students to set
 	 */
-	public void setStudents(List<Student> students) {
+	public void setStudents(Set<Student> students) {
 		this.students = students;
 	}
+	
+	
 }
