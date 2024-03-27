@@ -13,10 +13,13 @@ import org.springframework.context.annotation.PropertySources;
  */
 @Configuration
 @ConfigurationProperties(prefix = "jade.prop")
-@PropertySources({
-	@PropertySource("classpath:jadeapp.properties"),
-	@PropertySource("file:D:\\demo\\config\\demoapp.properties")
-})
+/*
+ * @PropertySources({
+ * 
+ * @PropertySource("classpath:jadeapp.properties"),
+ * 
+ * @PropertySource("file:D:\\demo\\config\\demoapp.properties") })
+ */
 public class PropsDemoConfig {
 
 	//@Value("${jade.prop.welcome}")
