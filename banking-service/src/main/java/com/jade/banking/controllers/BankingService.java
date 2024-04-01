@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.sb.banking.controllers;
+package com.jade.banking.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

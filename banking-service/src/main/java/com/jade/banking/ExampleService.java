@@ -1,4 +1,4 @@
-package com.sb.banking;
+package com.jade.banking;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
