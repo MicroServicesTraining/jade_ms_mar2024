@@ -1,15 +1,15 @@
-package com.jade.jpademo;
+package com.jade.admin;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
-@SpringBootApplication
 @EnableDiscoveryClient
-public class JadeJpaCrudDemoApplication {
+@SpringBootApplication
+public class JadeAdminServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(JadeJpaCrudDemoApplication.class, args);
+		SpringApplication.run(JadeAdminServiceApplication.class, args);
 	}
 
 }
