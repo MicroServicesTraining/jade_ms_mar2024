@@ -8,8 +8,8 @@
 		<version>3.2.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.servicenow</groupId>
-	<artifactId>sn-docker-demo</artifactId>
+	<groupId>com.jdade</groupId>
+	<artifactId>jade-docker-demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>sn-docker-demo</name>
 	<description>Demo project for Spring Boot</description>
