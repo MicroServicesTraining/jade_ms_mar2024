@@ -8,6 +8,7 @@ public class JadeSecDemoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(JadeSecDemoApplication.class, args);
+		System.out.println("Hello world...!");
 	}
 
 }
